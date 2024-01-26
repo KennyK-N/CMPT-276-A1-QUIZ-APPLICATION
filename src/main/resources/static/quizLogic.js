@@ -5,6 +5,7 @@ var slide_array_s = document.querySelectorAll(
 );
 submit_button.addEventListener("click", submit);
 var answer = [];
+var button_disable = document.querySelectorAll("button");
 
 showDivs(Index);
 
@@ -14,6 +15,9 @@ function move_divs(n) {
 }
 
 function showDivs(n) {
+  for (var i = 0; i < button_disable.length; i++) {
+    button_disable[i].disabled = true;
+  }
   var slide_array = document.getElementsByClassName("quiz_slides");
   if (n > slide_array.length) {
     console.log("work");
@@ -29,8 +33,14 @@ function showDivs(n) {
     slide_array[Index - 1].querySelector("input") != null
       ? slide_array[Index - 1].querySelector("input")
       : null;
+  var currentslide = slide_array[Index - 1];
   console.log(input_check);
-  slide_array[Index - 1].style.display = "flex";
+  currentslide.addEventListener("animationend", function () {
+    for (var i = 0; i < button_disable.length; i++) {
+      button_disable[i].disabled = false;
+    }
+  });
+  currentslide.style.display = "flex";
 }
 
 function submit(e) {
