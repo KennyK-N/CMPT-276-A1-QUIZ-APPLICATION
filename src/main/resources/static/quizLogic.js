@@ -1,5 +1,6 @@
 var Index = 1;
 var submit_button = document.querySelector("button[id=Finish_button]");
+//remove
 var slide_array_s = document.querySelectorAll(
   "div.quiz_slides input[class='written']"
 );
@@ -36,7 +37,7 @@ function showDivs(n) {
   }
   var input_check =
     slide_array[Index - 1].querySelector("input") != null
-      ? slide_array[Index - 1].querySelector("input")
+      ? slide_array[Index - 1].querySelector("input").type
       : null;
   var currentslide = slide_array[Index - 1];
   console.log(input_check);
