@@ -1,0 +1,88 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main {
+  border-style: solid;
+}
+.Container {
+  display: flex;
+  padding-top: 0.5%;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  border-style: solid;
+  width: 50%;
+  height: 50%;
+}
+@media only screen and (max-width: 700px), only screen and (max-height: 650px) {
+  .Container {
+    border-style: none;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .Container {
+    width: 65%;
+  }
+}
+.Title_header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  flex-direction: row;
+  width: 100%;
+}
+
+.quiz_slides {
+  display: hidden;
+  animation: fadeInOut 1s ease-in-out;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 100vh;
+}
+
+.btn-container button {
+  margin-bottom: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  align-items: center;
+  margin-bottom: 1vw;
+}
+.btn-container .left_button {
+  margin-right: 16vw;
+}
+
+.btn-container .right_button {
+  margin-left: 16vw;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
+}

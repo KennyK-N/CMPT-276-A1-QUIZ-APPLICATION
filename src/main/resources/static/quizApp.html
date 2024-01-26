@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Quiz</title>
+    <link rel="stylesheet" href="./quizApp.css" />
+  </head>
+  <body>
+    <main class="Container">
+      <div class="Title_header">
+        <h1>hello</h1>
+        <h1>Score</h1>
+      </div>
+      <form>
+        <div class="quiz_slides">hello</div>
+        <div class="quiz_slides">
+          <legend>What is the name of this website</legend>
+          <label> </label>
+          <input class="written" type="text" value="" />
+          <span class="Correct_answer"></span>
+        </div>
+        <div class="quiz_slides">
+          <legend>What is 1 * 1</legend>
+          <input type="radio" class="multiple_choice" id="ans_1" value="1" />
+          <label for="ans_1">1</label>
+          <input type="radio" class="multiple_choice" id="ans_2" value="2" />
+          <label for="ans_2">2</label>
+          <input type="radio" class="multiple_choice" id="ans_3" value="3" />
+          <label for="ans_3">3</label>
+          <input type="radio" class="multiple_choice" id="ans_4" value="4" />
+          <label for="ans_4">4</label>
+          <span class="Correct_answer"></span>
+        </div>
+        <div class="quiz_slides">
+          <legend>What is the name of this website</legend>
+          <label> </label>
+          <input class="written" type="text" value="" />
+          <span class="Correct_answer"></span>
+        </div>
+        <div class="quiz_slides">
+          <legend>What is the name of this website</legend>
+          <label> </label>
+          <input class="written" type="text" value="" />
+          <span class="Correct_answer"></span>
+        </div>
+        <div class="quiz_slides">
+          <legend>What is the name of this website</legend>
+          <label> </label>
+          <input class="written" type="text" value="" />
+          <span class="Correct_answer"></span>
+        </div>
+        <div class="quiz_slides">
+          <legend>What is 1 * 1</legend>
+          <input type="radio" class="multiple_choice" id="ans_1" value="1" />
+          <label for="ans_1">1</label>
+          <input type="radio" class="multiple_choice" id="ans_2" value="2" />
+          <label for="ans_2">2</label>
+          <input type="radio" class="multiple_choice" id="ans_3" value="3" />
+          <label for="ans_3">3</label>
+          <input type="radio" class="multiple_choice" id="ans_4" value="4" />
+          <label for="ans_4">4</label>
+          <span class="Correct_answer"></span>
+        </div>
+        <div class="quiz_slides">
+          <legend></legend>
+          <input type="checkbox" id="sushi" name="sushi" value="salmon" />
+          <label for="sushi"> salmon</label><br />
+          <input type="checkbox" id="pizza" name="pizza" value="peproni" />
+          <label for="pizza"> peproni</label><br />
+          <input type="checkbox" id="rice" name="rice" value="chicken" />
+          <label for="rice"> chciken</label>
+        </div>
+        <div class="quiz_slides">
+          <legend></legend>
+          <input type="checkbox" id="sushi" name="sushi" value="salmon" />
+          <label for="sushi"> salmon</label><br />
+          <input type="checkbox" id="pizza" name="pizza" value="peproni" />
+          <label for="pizza"> peproni</label><br />
+          <input type="checkbox" id="rice" name="rice" value="chicken" />
+          <label for="rice"> chciken</label>
+        </div>
+        <div class="quiz_slides">
+          <legend>What is the name of this website</legend>
+          <label> </label>
+          <input class="written" type="text" value="" />
+          <span class="Correct_answer"></span>
+        </div>
+        <div class="quiz_slides" placeholder="Hidden_Until_submission_remove">
+          <label>FinalScore</label><button>Retry</button>
+        </div>
+      </form>
+      <div class="btn-container">
+        <nav>
+          <button class="left_button" onclick="move_divs(-1)">&#10094;</button>
+          <button class="right_button" onclick="move_divs(1)">&#10095;</button>
+        </nav>
+      </div>
+    </main>
+    <script src="./quizLogic.js" defer></script>
+  </body>
+</html>
