@@ -1,7 +1,11 @@
 var Index = 1;
+var submit_button = document.querySelector("button[id=Finish_button]");
 var slide_array_s = document.querySelectorAll(
   "div.quiz_slides input[class='written']"
 );
+submit_button.addEventListener("click", submit);
+var answer = [];
+
 showDivs(Index);
 
 function move_divs(n) {
@@ -27,4 +31,9 @@ function showDivs(n) {
       : null;
   console.log(input_check);
   slide_array[Index - 1].style.display = "flex";
+}
+
+function submit(e) {
+  e.preventDefault();
+  alert("done_remove later");
 }
