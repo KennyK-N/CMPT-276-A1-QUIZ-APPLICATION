@@ -1,9 +1,5 @@
 var Index = 1;
 var submit_button = document.querySelector("button[id=Finish_button]");
-//remove
-var slide_array_s = document.querySelectorAll(
-  "div.quiz_slides input[class='written']"
-);
 submit_button.addEventListener("click", submit);
 var answer = [];
 var button_disable = document.querySelectorAll("button");
