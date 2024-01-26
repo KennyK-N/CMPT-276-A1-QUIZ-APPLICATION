@@ -6,6 +6,11 @@ var slide_array_s = document.querySelectorAll(
 submit_button.addEventListener("click", submit);
 var answer = [];
 var button_disable = document.querySelectorAll("button");
+var multiple_choice_usr_ans = document.querySelectorAll(
+  "input[class='multiple_choice']"
+);
+var written_usr_ans = document.querySelectorAll("input[class='written']");
+var matching_usr_ans = document.querySelectorAll("input[class='matching']");
 
 showDivs(Index);
 
