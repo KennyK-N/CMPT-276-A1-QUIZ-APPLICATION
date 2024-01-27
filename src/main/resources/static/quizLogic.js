@@ -18,17 +18,17 @@ var answer = [
 ];
 //NOTE CHECKBOX ANSWER MUST BE IN ORDER
 var button_disable = document.querySelectorAll("button");
-var multiple_choice_usr_ans = document.querySelectorAll(
+/*var multiple_choice_usr_ans = document.querySelectorAll(
   "input[class='multiple_choice']"
-);
-var written_usr_ans = document.querySelectorAll("input[class='written']");
-var matching_usr_ans = document.querySelectorAll("input[class='matching']");
+);*/
+//var written_usr_ans = document.querySelectorAll("input[class='written']");
+//var checkbox_usr_ans = document.querySelectorAll("input[class='matching']");
 
 showDivs(Index);
 
 function move_divs(n) {
-  console.log(Index);
-  showDivs((Index += n));
+  Index += n;
+  showDivs(Index);
 }
 
 function showDivs(n) {
@@ -39,10 +39,11 @@ function showDivs(n) {
   if (n > slide_array.length) {
     console.log("work");
     Index = 1;
-  }
-  if (n < 1) {
+  } else if (n < 1) {
     Index = slide_array.length;
+    //set to 1
   }
+  console.log(Index);
   for (var i = 0; i < slide_array.length; i++) {
     slide_array[i].style.display = "none";
   }
@@ -50,6 +51,10 @@ function showDivs(n) {
     slide_array[Index - 1].querySelector("input") != null
       ? slide_array[Index - 1].querySelector("input").type
       : null;
+
+  //CALL THE CHECK ANSWER FUNCTION
+
+  //
   var currentslide = slide_array[Index - 1];
   console.log(input_check);
   currentslide.addEventListener("animationend", function () {
@@ -66,20 +71,14 @@ function showDivs(n) {
 //PROB DONT NEED A LOOP BUT WILL PROB NEED ARRAY TO KEEP TRACK OF WHATS RIGHT OR WRONG FOR END RESULT
 function submit(e) {
   e.preventDefault();
-  var current_type;
+  var html_item_overwrite;
+  var multI_ans_wrong = true;
   var currentslide;
-  var current_slide_multi;
-  var matching_index = 0;
+  var checkbox_index = 0;
   var slide_array = document.getElementsByClassName("quiz_slides");
   for (var i = 0; i < 12; i++) {
-    if (slide_array[i + 1].querySelectorAll("input").length === 1) {
-      currentslide = slide_array[i + 1].querySelectorAll("input");
-      current_type = currentslide[0].type;
-    } else {
-      current_slide_multi = slide_array[i + 1].querySelectorAll("input");
-      current_type = current_slide_multi[0].type;
-    }
-    switch (current_type) {
+    currentslide = slide_array[i + 1].querySelectorAll("input");
+    switch (currentslide[0].type) {
       case "text":
         if (currentslide[0].value === answer[i]) {
           score++;
@@ -91,42 +90,74 @@ function submit(e) {
         break;
       case "radio":
         for (var j = 0; j < 4; j++) {
+          html_item_overwrite = slide_array[i + 1].querySelector(
+            "input#ans_" + String(j + 1) + " + label"
+          );
           if (
-            current_slide_multi[j].checked === true &&
-            current_slide_multi[j].value === answer[i]
+            currentslide[j].checked === true &&
+            currentslide[j].value === answer[i]
           ) {
             score++;
-          } else {
+            change_color_text(html_item_overwrite, "green", " &#10003;");
+            break;
+          } else if (currentslide[j].checked === true) {
             //display error message and correct answer
+            //PLAY ANIMATION AND SLOWLY SHOW THE TEXT CHANGING COLOR, ETC, THEN MOVE THE NEXT PAGE
+            // SIMILAR TO USING THE animation end thing
+            change_color_text(html_item_overwrite, "red", " &#10005;");
+            //HARD CODE AND STYLE COLOR THE CORRECT ANSWER
+            break;
           }
         }
         break;
       case "checkbox":
         for (var j = 0; j < 4; j++) {
-          if (current_slide_multi[j].checked === true) {
+          //rewrite to be cleaner
+          if (currentslide[j].checked === true) {
             if (
-              matching_index < answer[i].length &&
-              current_slide_multi[j].value === answer[i][matching_index]
+              checkbox_index < answer[i].length &&
+              currentslide[j].value === answer[i][checkbox_index]
             ) {
-              matching_index++;
+              checkbox_index++;
+              multI_ans_wrong = false;
             } else {
               //THERES AN ERROR IN WHICH IF U SELECT ALL OF THEM IT WILL STILL BE CORRECT
               //this is potential fix but not efficient
-              matching_index--;
+              multI_ans_wrong = true;
               //display error message and correct answer
             }
           }
         }
-        if (matching_index === answer[i].length) {
+        if (multI_ans_wrong == false) {
           score++;
         }
-        matching_index = 0;
+        multI_ans_wrong = true;
+        checkbox_index = 0;
         break;
       default:
         break;
     }
   }
-  alert("Your score " + score + " done_remove later");
+  var finalSlide = slide_array[13].querySelector("span");
+  for (var i = 0; i < button_disable.length; i++) {
+    button_disable[i].disabled = true;
+  }
+  finalSlide.innerHTML = "HELLO";
+
+  finalSlide.classList.add("fadeinout_animation");
+
+  finalSlide.addEventListener("animationend", function () {
+    for (var i = 0; i < button_disable.length; i++) {
+      button_disable[i].disabled = false;
+    }
+
+    finalSlide.removeAttribute("class");
+  });
+  //alert("Your score " + score + " done_remove later");
 }
 
+function change_color_text(html_element, usr_color, text) {
+  html_element.innerHTML += text;
+  html_element.style.color = usr_color;
+}
 //test

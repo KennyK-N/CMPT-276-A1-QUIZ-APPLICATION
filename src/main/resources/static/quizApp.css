@@ -7,28 +7,45 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #3498db;
 }
 main {
+  border-radius: 10px;
   border-style: solid;
+  border-color: white;
 }
 .Container {
+  background-color: white;
   display: flex;
   padding-top: 0.5%;
   align-items: center;
   align-content: center;
   flex-direction: column;
   border-style: solid;
-  width: 50%;
-  height: 50%;
+  width: 50vw;
+  height: 65vh;
 }
-@media only screen and (max-width: 700px), only screen and (max-height: 650px) {
+@media only screen and (max-width: 250px), only screen and (max-height: 550px) {
+  .container {
+    border: none;
+  }
+  body {
+    background-color: white;
+  }
+}
+@media only screen and (max-width: 450px) {
   .Container {
-    border-style: none;
+    height: 45%;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .Container {
+    width: 85%;
   }
 }
 @media only screen and (max-width: 1200px) {
   .Container {
-    width: 65%;
+    width: 75%;
   }
 }
 .Title_header {
@@ -41,13 +58,35 @@ main {
 }
 
 .quiz_slides {
+  padding-top: 2vh;
   display: hidden;
-  animation: fadeInOut 1s ease-in-out;
+  flex-direction: column;
+  animation: fadeInOut 0.75s ease-in-out; /*change to 0.5 later when combining*/
+}
+
+.quiz_slides legend,
+input,
+span {
+  margin-bottom: 2vh;
+}
+
+.quiz_slides input[type="text"],
+.quiz_slides span {
+  width: 47vw;
+  height: 60px;
+  font-size: 50px;
+}
+
+.quiz_slides span,
+.quiz_slides legend {
+  padding-top: 4vh;
+  width: 45vw;
+  height: 55px;
+  font-size: 30px;
 }
 
 .btn-container {
   display: flex;
-  flex-direction: row;
   justify-content: flex-end;
   align-items: flex-end;
   height: 100vh;
@@ -61,6 +100,7 @@ main {
   align-items: center;
   margin-bottom: 1vw;
 }
+
 .btn-container .left_button {
   margin-right: 16vw;
 }
@@ -90,6 +130,10 @@ main {
   }
 }
 
+.fadeinout_animation {
+  animation: fadeInOut 0.4s ease-in-out; /*change to 0.5 later when combining*/
+}
+
 button,
 button:disabled {
   background-color: #3498db;
@@ -102,4 +146,21 @@ button:disabled {
 button:hover,
 button:disabled:hover {
   background-color: #2980b9;
+}
+
+.checkbox-container,
+.radio-container {
+  display: flex;
+  flex-direction: column;
+}
+.checkbox-item,
+.radio-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkbox-item input,
+.radio-item input {
+  margin-right: 5px;
 }
