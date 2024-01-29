@@ -122,6 +122,7 @@ function submit_and_showdev(n) {
           //display error message and correct answer
           slide_array[Index - 1].querySelector("span").textContent =
             "Correct Answer: " + answer[Index - 2];
+          slide_array[Index - 1].querySelector("span").style.color = "#006400";
         }
         currentslide[0].disabled = true;
         break;
