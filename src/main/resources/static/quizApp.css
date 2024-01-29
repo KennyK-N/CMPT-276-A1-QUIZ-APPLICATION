@@ -8,6 +8,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #3498db;
+  font-family: Arial, Helvetica, sans-serif;
 }
 main {
   border-radius: 5px;
@@ -43,7 +44,7 @@ main {
   animation: fadeInOut 0.75s ease-in-out; /*change to 0.5 later when combining*/
 }
 
-.quiz_slides legend,
+.quiz_slides h2,
 .quiz_slides span,
 .quiz_slides input[type="text"] {
   margin-bottom: 3vh;
@@ -63,7 +64,7 @@ main {
 }
 
 .quiz_slides span,
-.quiz_slides legend {
+.quiz_slides h2 {
   padding-top: 2vh;
   width: 45vw;
   height: 4vh;
@@ -173,6 +174,10 @@ button:disabled:hover {
   z-index: 1;
 }
 
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+  font-weight: bold;
+}
 @media only screen and (max-width: 250px), only screen and (max-height: 550px) {
   .container {
     border: none;
@@ -189,7 +194,7 @@ button:disabled:hover {
   .quiz_slides input[type="text"] {
     font-size: 25px;
   }
-  .quiz_slides legend {
+  .quiz_slides h2 {
     font-size: 5vmin;
   }
 }
@@ -202,7 +207,7 @@ button:disabled:hover {
   .quiz_slides input[type="text"] {
     font-size: 25px;
   }
-  .quiz_slides legend {
+  .quiz_slides h2 {
     font-size: 15px;
   }
 }

@@ -3,6 +3,7 @@ var score = 0;
 var reached_end = false;
 var submit_button = document.querySelector("button[id=Finish_button]");
 submit_button.addEventListener("click", submit);
+var button_disable = document.querySelectorAll("button");
 var answer = [
   "website",
   "1",
@@ -43,10 +44,6 @@ var num_correct_question = [
   false,
   false,
 ];
-
-var button_disable = document.querySelectorAll("button");
-
-showDivs(Index);
 
 function move_divs(n) {
   Index += n;
@@ -123,6 +120,8 @@ function submit_and_showdev(n) {
           currentslide[0].style.backgroundColor = "#ffcccc";
           currentslide[0].style.color = "#990000";
           //display error message and correct answer
+          slide_array[Index - 1].querySelector("span").textContent =
+            "Correct Answer: " + answer[Index - 2];
         }
         currentslide[0].disabled = true;
         break;
@@ -257,6 +256,7 @@ function submit(e) {
   for (var i = 0; i < button_disable.length; i++) {
     button_disable[i].disabled = true;
   }
+  openModal();
   finalSlide.innerHTML = "HELLO";
 
   finalSlide.classList.add("fadeinout_animation");
@@ -268,7 +268,6 @@ function submit(e) {
 
     finalSlide.removeAttribute("class");
   });
-  alert("Your score " + score + " done_remove later");
   reached_end = true;
 }
 
@@ -282,6 +281,10 @@ function change_color_text(html_element, usr_color, text) {
 
 function openModal() {
   document.getElementById("overlay").style.display = "block";
+  document.querySelector("#overlay h3").textContent =
+    "Congratulations on finishing the quiz your score for the quiz is " +
+    score +
+    "/12";
   window.addEventListener("click", closeOnOutsideClick);
 }
 
@@ -296,3 +299,8 @@ function closeOnOutsideClick(event) {
     closeModal();
   }
 }
+
+showDivs(Index);
+//REMOVE CONSOLE.LOG
+
+//USE A TABLE FOR RESULT SECTION TO DISPLAY USER SCORE, ANSWER AND CHOICES
