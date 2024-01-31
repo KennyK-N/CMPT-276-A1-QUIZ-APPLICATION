@@ -4,30 +4,19 @@ var reached_end = false;
 var submit_button = document.querySelector("button[id=Finish_button]");
 submit_button.addEventListener("click", submit);
 var button_disable = document.querySelectorAll("button");
-var answer = [
-  "website",
-  "1",
-  "web",
-  "w32b",
-  "wbx",
-  "2",
-  ["up"],
-  ["salmon", "up"],
-  "3",
-  "4",
-  "mxb",
-  "1",
-];
-var multi_ans_idx = {
+var answer = ["1", "1", "4", "2", "3", "2", "3", "1", "3", "4", "2", "1"];
+var correct_answer_position = {
+  2: 1,
   3: 1,
+  4: 4,
+  5: 2,
+  6: 3,
   7: 2,
-  8: { 0: 4 },
-  9: {
-    0: 1,
-    1: 4,
-  },
+  8: 3,
+  9: 1,
   10: 3,
   11: 4,
+  12: 2,
   13: 1,
 };
 var num_correct_question = [
@@ -37,8 +26,8 @@ var num_correct_question = [
   false,
   false,
   false,
-  [false],
-  [false, false],
+  false,
+  false,
   false,
   false,
   false,
@@ -93,9 +82,7 @@ function showDivs(n) {
 
 function submit_and_showdev(n) {
   var slide_array = document.getElementsByClassName("quiz_slides");
-  var checkbox_index = 0;
   var multi_checked_input = true;
-  var checkbox_no_wrong_value = true;
   var currentslide =
     slide_array[Index - 1].querySelectorAll("input") != null
       ? slide_array[Index - 1].querySelectorAll("input")
@@ -105,137 +92,49 @@ function submit_and_showdev(n) {
     currentslide.length !== 0 &&
     currentslide[0] != null
   ) {
-    switch (currentslide[0].type) {
-      case "text":
-        if (currentslide[0].disabled == true) break;
-        var inputValue = currentslide[0].value.trim();
-        if (inputValue === answer[Index - 2]) {
+    if (currentslide[0].disabled != true) {
+      for (var j = 0; j < 4; j++) {
+        if (
+          currentslide[j].checked === true &&
+          currentslide[j].value === answer[Index - 2]
+        ) {
+          disable_input(currentslide);
           score++;
-          currentslide[0].style.backgroundColor = "#cdeccd";
-          currentslide[0].style.color = "#006400";
+          multi_checked_input = false;
+          change_color_text(
+            slide_array[Index - 1].querySelector(
+              "input#ans_" + String(j + 1) + " + label"
+            ),
+            "#006400",
+            " &#10003;"
+          );
           num_correct_question[Index - 2] = true;
-        } else if (inputValue === "") {
-          return;
-        } else {
-          currentslide[0].style.backgroundColor = "#ffcccc";
-          currentslide[0].style.color = "#990000";
+          break;
+        } else if (currentslide[j].checked === true) {
           //display error message and correct answer
-          slide_array[Index - 1].querySelector("span").textContent =
-            "Correct Answer: " + answer[Index - 2];
-          slide_array[Index - 1].querySelector("span").style.color = "#006400";
+          //PLAY ANIMATION AND SLOWLY SHOW THE TEXT CHANGING COLOR, ETC, THEN MOVE THE NEXT PAGE
+          // SIMILAR TO USING THE animation end thing
+          disable_input(currentslide);
+          change_color_text(
+            slide_array[Index - 1].querySelector(
+              "input#ans_" + String(j + 1) + " + label"
+            ),
+            "#990000",
+            " &#10005;"
+          );
+          change_color_text(
+            slide_array[Index - 1].querySelector(
+              "input#ans_" + String(correct_answer_position[Index]) + " + label"
+            ),
+            "#006400",
+            ""
+          );
+          multi_checked_input = false;
+          break;
         }
-        currentslide[0].disabled = true;
-        break;
-      case "radio":
-        if (currentslide[0].disabled == true) break;
-        for (var j = 0; j < 4; j++) {
-          if (
-            currentslide[j].checked === true &&
-            currentslide[j].value === answer[Index - 2]
-          ) {
-            disable_input(currentslide);
-            score++;
-            multi_checked_input = false;
-            change_color_text(
-              slide_array[Index - 1].querySelector(
-                "input#ans_" + String(j + 1) + " + label"
-              ),
-              "#006400",
-              " &#10003;"
-            );
-            num_correct_question[Index - 2] = true;
-            break;
-          } else if (currentslide[j].checked === true) {
-            //display error message and correct answer
-            //PLAY ANIMATION AND SLOWLY SHOW THE TEXT CHANGING COLOR, ETC, THEN MOVE THE NEXT PAGE
-            // SIMILAR TO USING THE animation end thing
-            disable_input(currentslide);
-            change_color_text(
-              slide_array[Index - 1].querySelector(
-                "input#ans_" + String(j + 1) + " + label"
-              ),
-              "#990000",
-              " &#10005;"
-            );
-            change_color_text(
-              slide_array[Index - 1].querySelector(
-                "input#ans_" + String(multi_ans_idx[Index]) + " + label"
-              ),
-              "#006400",
-              ""
-            );
-            multi_checked_input = false;
-            break;
-          }
-        }
-        if (multi_checked_input == true) return;
-        multi_checked_input = true;
-        break;
-      case "checkbox":
-        if (currentslide[0].disabled == true) break;
-        for (var j = 0; j < 4; j++) {
-          //rewrite to be cleaner
-          if (currentslide[j].checked === true) {
-            disable_input(currentslide);
-            if (
-              checkbox_index < answer[Index - 2].length &&
-              currentslide[j].value === answer[Index - 2][checkbox_index]
-            ) {
-              checkbox_index++;
-              if (checkbox_no_wrong_value == true) {
-                multi_checked_input = false;
-                num_correct_question[Index - 2][checkbox_index] = true;
-              }
-            } else {
-              multi_checked_input = false;
-              checkbox_no_wrong_value = false;
-              change_color_text(
-                slide_array[Index - 1].querySelector(
-                  "input#ans_" + String(j + 1) + " + label"
-                ),
-                "#990000",
-                " &#10005;"
-              );
-              //display error message and correct answer
-            }
-          }
-        }
-        if (multi_checked_input == true) return;
-        if (checkbox_no_wrong_value == true) {
-          score++;
-        } else {
-          for (var i = 0; i < answer[Index - 2].length; i++) {
-            num_correct_question[Index - 2][i] = false;
-          }
-        }
-        for (var i = 0; i < answer[Index - 2].length; i++) {
-          if (
-            num_correct_question[Index - 2][i] == false &&
-            checkbox_no_wrong_value == false
-          ) {
-            change_color_text(
-              slide_array[Index - 1].querySelector(
-                "input#ans_" + String(multi_ans_idx[Index][i]) + " + label"
-              ),
-              "#006400",
-              ""
-            );
-          } else {
-            change_color_text(
-              slide_array[Index - 1].querySelector(
-                "input#ans_" + String(multi_ans_idx[Index][i]) + " + label"
-              ),
-              "#006400",
-              " &#10003;"
-            );
-          }
-        }
-        multi_checked_input = true;
-        checkbox_index = 0;
-        checkbox_no_wrong_value = true;
-        break;
-      default:
-        break;
+      }
+      if (multi_checked_input == true) return;
+      multi_checked_input = true;
     }
   }
   move_divs(n);
@@ -259,7 +158,7 @@ function submit(e) {
   }
   openModal();
   finalSlide.innerHTML = "HELLO";
-
+  //MAKE THIS A FUNCTION
   finalSlide.classList.add("fadeinout_animation");
 
   finalSlide.addEventListener("animationend", function () {
