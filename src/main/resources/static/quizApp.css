@@ -60,7 +60,6 @@ main {
 
 .quiz_slides {
   padding-top: 2vh;
-  display: hidden;
   flex-direction: column;
   animation: fadeInOut 0.75s ease-in-out; /*change to 0.5 later when combining*/
 }
@@ -135,7 +134,11 @@ main {
 }
 
 .fadeinout_animation {
-  animation: fadeInOut 0.4s ease-in-out; /*change to 0.5 later when combining*/
+  animation: fadeInOut 0.15s ease-in-out; /*change to 0.5 later when combining*/
+}
+
+.btn-container {
+  display: none;
 }
 
 button,

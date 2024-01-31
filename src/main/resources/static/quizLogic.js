@@ -1,10 +1,25 @@
 var Index = 1;
 var score = 0;
 var reached_end = false;
+var movenext_div = true;
 var submit_button = document.querySelector("button[id=Finish_button]");
 submit_button.addEventListener("click", submit);
 var button_disable = document.querySelectorAll("button");
-var answer = ["1", "1", "4", "2", "3", "2", "3", "1", "3", "4", "2", "1"];
+var start_button = document.querySelector("button[id=start]");
+var answer = [
+  "25",
+  "121",
+  "4",
+  "12",
+  "0",
+  "4",
+  "900",
+  "-1",
+  "27",
+  "8",
+  "25",
+  "1",
+];
 var correct_answer_position = {
   2: 1,
   3: 1,
@@ -33,6 +48,15 @@ var num_correct_question = [
   false,
   false,
 ];
+
+start_button.addEventListener("click", function (e) {
+  e.preventDefault();
+  document.querySelector(".btn-container").style.display = "flex";
+  var newelement = document.createElement("h3");
+  document.querySelector(".quiz_slides").appendChild(newelement);
+  newelement.style.display = "flex";
+  start_button.remove();
+});
 
 function move_divs(n) {
   Index += n;
@@ -108,6 +132,11 @@ function submit_and_showdev(n) {
             "#006400",
             " &#10003;"
           );
+          animation_player(
+            slide_array[Index - 1].querySelector(
+              "input#ans_" + String(j + 1) + " + label"
+            )
+          );
           num_correct_question[Index - 2] = true;
           break;
         } else if (currentslide[j].checked === true) {
@@ -122,12 +151,22 @@ function submit_and_showdev(n) {
             "#990000",
             " &#10005;"
           );
+          animation_player(
+            slide_array[Index - 1].querySelector(
+              "input#ans_" + String(j + 1) + " + label"
+            )
+          );
           change_color_text(
             slide_array[Index - 1].querySelector(
               "input#ans_" + String(correct_answer_position[Index]) + " + label"
             ),
             "#006400",
             ""
+          );
+          animation_player(
+            slide_array[Index - 1].querySelector(
+              "input#ans_" + String(correct_answer_position[Index]) + " + label"
+            )
           );
           multi_checked_input = false;
           break;
@@ -137,7 +176,7 @@ function submit_and_showdev(n) {
       multi_checked_input = true;
     }
   }
-  move_divs(n);
+  if (movenext_div == true) move_divs(n);
 }
 function disable_input(currentslide) {
   currentslide[0].disabled = true;
@@ -151,24 +190,25 @@ function disable_input(currentslide) {
 //PROB DONT NEED A LOOP BUT WILL PROB NEED ARRAY TO KEEP TRACK OF WHATS RIGHT OR WRONG FOR END RESULT
 function submit(e) {
   e.preventDefault();
-  var slide_array = document.getElementsByClassName("quiz_slides");
-  var finalSlide = slide_array[13].querySelector("span");
-  for (var i = 0; i < button_disable.length; i++) {
-    button_disable[i].disabled = true;
-  }
+
   openModal();
-  finalSlide.innerHTML = "HELLO";
-  //MAKE THIS A FUNCTION
-  finalSlide.classList.add("fadeinout_animation");
 
-  finalSlide.addEventListener("animationend", function () {
-    for (var i = 0; i < button_disable.length; i++) {
-      button_disable[i].disabled = false;
-    }
-
-    finalSlide.removeAttribute("class");
-  });
   reached_end = true;
+  button_disable[0].disabled = true;
+  var table = document.querySelector(".table-container table tbody");
+  var newRow = table.insertRow();
+
+  var cell1 = newRow.insertCell(0);
+  cell1.setAttribute("label", "Questions");
+  cell1.textContent = "Data 4";
+
+  var cell2 = newRow.insertCell(1);
+  cell2.setAttribute("label", "Correct/Incorrect");
+  cell2.textContent = "Data 5";
+
+  var cell3 = newRow.insertCell(2);
+  cell3.setAttribute("label", "Score");
+  cell3.textContent = "Data 6";
 }
 
 function change_color_text(html_element, usr_color, text) {
@@ -176,6 +216,15 @@ function change_color_text(html_element, usr_color, text) {
   html_element.style.color = usr_color;
 }
 
+function animation_player(Slide) {
+  movenext_div = false;
+  Slide.classList.add("fadeinout_animation");
+
+  Slide.addEventListener("animationend", function () {
+    Slide.removeAttribute("class");
+    movenext_div = true;
+  });
+}
 // add an error message below the input box using span if user tries to submit an empty answer for each slide
 // also remoe the error message when user successfully submitted
 

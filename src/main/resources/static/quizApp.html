@@ -13,30 +13,7 @@
       </div>
       <form>
         <div class="quiz_slides">
-          Intro
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Questions</th>
-                  <th id="correctness">Correct/Incorrect</th>
-                  <th id="Score">Score</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td label="Questions">Data 12222222222222</td>
-                  <td label="Correct/Incorrect">Data 2222222222222</td>
-                  <td label="Score">Data</td>
-                </tr>
-                <tr>
-                  <td label="Questions">Data 4</td>
-                  <td label="Correct/Incorrect">Data 5</td>
-                  <td label="Score">Data 6</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <button id="start">Start Quiz</button>
         </div>
         <div class="quiz_slides">
           <h2>What is 5 x 5?</h2>
@@ -47,9 +24,9 @@
                 class="multiple_choice"
                 name="answer"
                 id="ans_1"
-                value="1"
+                value="25"
               />
-              <label for="ans_1">1222</label>
+              <label for="ans_1">25</label>
             </div>
             <div class="radio-item">
               <input
@@ -92,9 +69,9 @@
                 class="multiple_choice"
                 name="answer_2"
                 id="ans_1"
-                value="1"
+                value="121"
               />
-              <label for="ans_1">1</label>
+              <label for="ans_1">121</label>
             </div>
             <div class="radio-item">
               <input
@@ -192,9 +169,9 @@
                 class="multiple_choice"
                 name="answer_4"
                 id="ans_2"
-                value="2"
+                value="12"
               />
-              <label for="ans_2">2</label>
+              <label for="ans_2">12</label>
             </div>
             <div class="radio-item">
               <input
@@ -247,9 +224,9 @@
                 class="multiple_choice"
                 name="answer_5"
                 id="ans_3"
-                value="3"
+                value="0"
               />
-              <label for="ans_3">3</label>
+              <label for="ans_3">0</label>
             </div>
             <div class="radio-item">
               <input
@@ -282,9 +259,9 @@
                 class="multiple_choice"
                 name="answer_6"
                 id="ans_2"
-                value="2"
+                value="4"
               />
-              <label for="ans_2">2</label>
+              <label for="ans_2">4</label>
             </div>
             <div class="radio-item">
               <input
@@ -302,9 +279,9 @@
                 class="multiple_choice"
                 name="answer_6"
                 id="ans_4"
-                value="4"
+                value="2"
               />
-              <label for="ans_4">4</label>
+              <label for="ans_4">2</label>
             </div>
           </div>
         </div>
@@ -337,9 +314,9 @@
                 class="multiple_choice"
                 name="answer_7"
                 id="ans_3"
-                value="3"
+                value="900"
               />
-              <label for="ans_3">3</label>
+              <label for="ans_3">900</label>
             </div>
             <div class="radio-item">
               <input
@@ -362,9 +339,9 @@
                 class="multiple_choice"
                 name="answer_8"
                 id="ans_1"
-                value="1"
+                value="-1"
               />
-              <label for="ans_1">1</label>
+              <label for="ans_1">-1</label>
             </div>
             <div class="radio-item">
               <input
@@ -427,9 +404,9 @@
                 class="multiple_choice"
                 name="answer_9"
                 id="ans_3"
-                value="3"
+                value="27"
               />
-              <label for="ans_3">3</label>
+              <label for="ans_3">27</label>
             </div>
             <div class="radio-item">
               <input
@@ -444,7 +421,7 @@
           </div>
         </div>
         <div class="quiz_slides">
-          <h2>What is 2 + 2?</h2>
+          <h2>What is 4 + 4?</h2>
           <div class="radio-container">
             <div class="radio-item">
               <input
@@ -482,9 +459,9 @@
                 class="multiple_choice"
                 name="answer_10"
                 id="ans_4"
-                value="4"
+                value="8"
               />
-              <label for="ans_4">4</label>
+              <label for="ans_4">8</label>
             </div>
           </div>
         </div>
@@ -507,9 +484,9 @@
                 class="multiple_choice"
                 name="answer_11"
                 id="ans_2"
-                value="2"
+                value="25"
               />
-              <label for="ans_2">2</label>
+              <label for="ans_2">25</label>
             </div>
             <div class="radio-item">
               <input
@@ -586,6 +563,18 @@
               <span id="close-btn" onclick="closeModal()">&times;</span>
               <h3></h3>
             </div>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Questions</th>
+                  <th id="correctness">Correct/Incorrect</th>
+                  <th id="Score">Score</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
         </div>
       </form>
