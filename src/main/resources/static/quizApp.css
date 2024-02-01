@@ -25,7 +25,10 @@ body {
   border: 6px solid transparent;
   background-clip: content-box;
 }
-
+.Title_header {
+  background-color: #2196f3;
+  color: white;
+}
 main {
   border-radius: 5px;
   border-style: solid;
@@ -255,6 +258,26 @@ input[type="radio"] + label {
   font-weight: bold;
   width: 25vw;
 }
+
+.rules {
+  text-align: center;
+  max-width: 19em;
+  margin: 0 auto;
+}
+
+.rules ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.rules li {
+  margin-bottom: 10px;
+  background-color: #f4f4f4;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 @media only screen and (max-width: 250px), only screen and (max-height: 550px) {
   .container {
     border: none;

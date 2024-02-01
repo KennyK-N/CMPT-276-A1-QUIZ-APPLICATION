@@ -4,7 +4,6 @@ var reached_end = false;
 var movenext_div = true;
 var submit_button = document.querySelector("button[id=Finish_button]");
 submit_button.addEventListener("click", submit);
-var button_disable = document.querySelectorAll("button");
 var start_button = document.querySelector("button[id=start]");
 var answer = [
   "25",
@@ -64,6 +63,7 @@ function move_divs(n) {
 }
 
 function showDivs(n) {
+  var button_disable = document.querySelectorAll("button");
   var slide_array = document.getElementsByClassName("quiz_slides");
   if (n > slide_array.length) {
     switch (reached_end) {
@@ -189,12 +189,11 @@ function disable_input(currentslide) {
 // WHEN USER PRESS NEXT IT AUTO EVALUATE
 //PROB DONT NEED A LOOP BUT WILL PROB NEED ARRAY TO KEEP TRACK OF WHATS RIGHT OR WRONG FOR END RESULT
 function submit(e) {
+  var button_disable = document.querySelectorAll("button");
   e.preventDefault();
-
   openModal();
-
   reached_end = true;
-  button_disable[0].disabled = true;
+  button_disable[0].remove();
   var table = document.querySelector(".table-container table tbody");
   var newRow = table.insertRow();
 
