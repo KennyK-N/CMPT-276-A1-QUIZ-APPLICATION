@@ -1,4 +1,4 @@
-package quiz.interactive_quiz;
+package quiz.quiz;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
