@@ -94,7 +94,6 @@ function showDivs(n, current_button) {
     slide_array[i].style.display = "none";
   }
 
-  //
   var currentslide = slide_array[Index - 1];
   currentslide.addEventListener("animationend", function () {
     for (var i = 0; i < button_disable.length; i++) {
@@ -140,9 +139,6 @@ function submit_and_showdev(n, current_button) {
           num_correct_question[Index - 2] = true;
           break;
         } else if (currentslide[j].checked === true) {
-          //display error message and correct answer
-          //PLAY ANIMATION AND SLOWLY SHOW THE TEXT CHANGING COLOR, ETC, THEN MOVE THE NEXT PAGE
-          // SIMILAR TO USING THE animation end thing
           disable_input(currentslide);
           change_color_text(
             slide_array[Index - 1].querySelector(
@@ -232,8 +228,6 @@ function animation_player(Slide) {
     movenext_div = true;
   });
 }
-// add an error message below the input box using span if user tries to submit an empty answer for each slide
-// also remoe the error message when user successfully submitted
 
 function openModal() {
   document.getElementById("overlay").style.display = "block";
