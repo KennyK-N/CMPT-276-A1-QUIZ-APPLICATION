@@ -16,7 +16,7 @@ var answer = [
   "-1",
   "27",
   "8",
-  "25",
+  "24",
   "1",
 ];
 var correct_answer_position = {
@@ -51,10 +51,10 @@ var num_correct_question = [
 start_button.addEventListener("click", function (e) {
   e.preventDefault();
   document.querySelector(".btn-container").style.display = "flex";
-  var newelement = document.createElement("h3");
-  document.querySelector(".quiz_slides").appendChild(newelement);
-  newelement.style.display = "flex";
   start_button.remove();
+  document
+    .querySelector(".btn-container")
+    .scrollIntoView({ behavior: "smooth" });
 });
 
 function move_divs(n) {
@@ -71,7 +71,6 @@ function showDivs(n) {
         Index = 1;
         break;
       case false:
-        console.log("inf loop");
         Index = slide_array.length;
         return;
     }
@@ -81,7 +80,6 @@ function showDivs(n) {
         Index = slide_array.length;
         break;
       case false:
-        console.log("inf loop");
         Index = 1;
         return;
     }
@@ -89,7 +87,7 @@ function showDivs(n) {
   for (var i = 0; i < button_disable.length; i++) {
     button_disable[i].disabled = true;
   }
-  console.log(Index);
+
   for (var i = 0; i < slide_array.length; i++) {
     slide_array[i].style.display = "none";
   }
@@ -184,30 +182,35 @@ function disable_input(currentslide) {
   currentslide[2].disabled = true;
   currentslide[3].disabled = true;
 }
-//change this A FUNCTION to check correct answer when user press nextt
-// Provide feedback for each answer selected (e.g., highlighting the user's answer and the correct answer).
-// WHEN USER PRESS NEXT IT AUTO EVALUATE
-//PROB DONT NEED A LOOP BUT WILL PROB NEED ARRAY TO KEEP TRACK OF WHATS RIGHT OR WRONG FOR END RESULT
+
 function submit(e) {
   var button_disable = document.querySelectorAll("button");
+  var slide_array = document.getElementsByClassName("quiz_slides");
   e.preventDefault();
   openModal();
   reached_end = true;
   button_disable[0].remove();
+  slide_array[13].querySelector("h1").textContent =
+    "Your Final Score: " + score + "/12";
   var table = document.querySelector(".table-container table tbody");
-  var newRow = table.insertRow();
-
-  var cell1 = newRow.insertCell(0);
-  cell1.setAttribute("label", "Questions");
-  cell1.textContent = "Data 4";
-
-  var cell2 = newRow.insertCell(1);
-  cell2.setAttribute("label", "Correct/Incorrect");
-  cell2.textContent = "Data 5";
-
-  var cell3 = newRow.insertCell(2);
-  cell3.setAttribute("label", "Score");
-  cell3.textContent = "Data 6";
+  for (var i = 1; i < slide_array.length - 1; i++) {
+    var newRow = table.insertRow();
+    var cell1 = newRow.insertCell(0);
+    var cell2 = newRow.insertCell(1);
+    var cell3 = newRow.insertCell(2);
+    cell1.setAttribute("label", "Questions");
+    cell1.textContent = slide_array[i].querySelector("h2").textContent;
+    cell2.setAttribute("label", "Correct Answer");
+    cell2.textContent = answer[i - 1];
+    cell3.setAttribute("label", "Score");
+    if (num_correct_question[i - 1] == true) {
+      cell3.textContent = "1";
+      cell3.style.color = "#006400";
+    } else {
+      cell3.textContent = "0";
+      cell3.style.color = "#990000";
+    }
+  }
 }
 
 function change_color_text(html_element, usr_color, text) {
@@ -249,6 +252,3 @@ function closeOnOutsideClick(event) {
 }
 
 showDivs(Index);
-//REMOVE CONSOLE.LOG
-
-//USE A TABLE FOR RESULT SECTION TO DISPLAY USER SCORE, ANSWER AND CHOICES
