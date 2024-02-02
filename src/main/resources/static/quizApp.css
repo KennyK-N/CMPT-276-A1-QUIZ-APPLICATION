@@ -66,7 +66,7 @@ main {
 .quiz_slides {
   padding-top: 2vh;
   flex-direction: column;
-  animation: fadeInOut 0.75s ease-in-out; /*change to 0.5 later when combining*/
+  animation: fadeInOut 0.55s ease-in-out;
 }
 
 .quiz_slides h2,
@@ -139,7 +139,7 @@ main {
 }
 
 .fadeinout_animation {
-  animation: fadeInOut 0.15s ease-in-out; /*change to 0.5 later when combining*/
+  animation: fadeInOut 0.15s ease-in-out;
 }
 
 .btn-container {
@@ -280,6 +280,28 @@ input[type="radio"] + label {
   padding: 5px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25%,
+  75% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+.err_shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+#close-btn {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 250px), only screen and (max-height: 550px) {

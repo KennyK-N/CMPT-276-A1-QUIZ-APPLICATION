@@ -57,12 +57,12 @@ start_button.addEventListener("click", function (e) {
     .scrollIntoView({ behavior: "smooth" });
 });
 
-function move_divs(n) {
+function move_divs(n, current_button) {
   Index += n;
-  showDivs(Index);
+  showDivs(Index, current_button);
 }
 
-function showDivs(n) {
+function showDivs(n, current_button) {
   var button_disable = document.querySelectorAll("button");
   var slide_array = document.getElementsByClassName("quiz_slides");
   if (n > slide_array.length) {
@@ -72,6 +72,7 @@ function showDivs(n) {
         break;
       case false:
         Index = slide_array.length;
+        error_animation_player(current_button);
         return;
     }
   } else if (n < 1) {
@@ -81,6 +82,7 @@ function showDivs(n) {
         break;
       case false:
         Index = 1;
+        error_animation_player(current_button);
         return;
     }
   }
@@ -102,7 +104,7 @@ function showDivs(n) {
   currentslide.style.display = "flex";
 }
 
-function submit_and_showdev(n) {
+function submit_and_showdev(n, current_button) {
   var slide_array = document.getElementsByClassName("quiz_slides");
   var multi_checked_input = true;
   var currentslide =
@@ -170,11 +172,14 @@ function submit_and_showdev(n) {
           break;
         }
       }
-      if (multi_checked_input == true) return;
+      if (multi_checked_input == true) {
+        error_animation_player(current_button);
+        return;
+      }
       multi_checked_input = true;
     }
   }
-  if (movenext_div == true) move_divs(n);
+  if (movenext_div == true) move_divs(n, current_button);
 }
 function disable_input(currentslide) {
   currentslide[0].disabled = true;
@@ -249,6 +254,19 @@ function closeOnOutsideClick(event) {
   if (event.target === document.getElementById("overlay")) {
     closeModal();
   }
+}
+
+function error_animation_player(current_button) {
+  var right_button = document.querySelector(".right_button");
+  var left_button = document.querySelector(".left_button");
+  right_button.disabled = true;
+  left_button.disabled = true;
+  current_button.classList.add("err_shake");
+  current_button.addEventListener("animationend", function () {
+    current_button.classList.remove("err_shake");
+    right_button.disabled = false;
+    left_button.disabled = false;
+  });
 }
 
 showDivs(Index);
