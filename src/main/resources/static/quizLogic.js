@@ -125,44 +125,36 @@ function submit_and_showdev(n, current_button) {
           score++;
           multi_checked_input = false;
           change_color_text(
-            slide_array[Index - 1].querySelector(
-              "input#ans_" + String(j + 1) + " + label"
-            ),
+            slide_array[Index - 1].querySelectorAll("input + label")[j],
             "#006400",
             " &#10003;"
           );
           animation_player(
-            slide_array[Index - 1].querySelector(
-              "input#ans_" + String(j + 1) + " + label"
-            )
+            slide_array[Index - 1].querySelectorAll("input + label")[j]
           );
           num_correct_question[Index - 2] = true;
           break;
         } else if (currentslide[j].checked === true) {
           disable_input(currentslide);
           change_color_text(
-            slide_array[Index - 1].querySelector(
-              "input#ans_" + String(j + 1) + " + label"
-            ),
+            slide_array[Index - 1].querySelectorAll("input + label")[j],
             "#990000",
             " &#10005;"
           );
           animation_player(
-            slide_array[Index - 1].querySelector(
-              "input#ans_" + String(j + 1) + " + label"
-            )
+            slide_array[Index - 1].querySelectorAll("input + label")[j]
           );
           change_color_text(
-            slide_array[Index - 1].querySelector(
-              "input#ans_" + String(correct_answer_position[Index]) + " + label"
-            ),
+            slide_array[Index - 1].querySelectorAll("input + label")[
+              correct_answer_position[Index] - 1
+            ],
             "#006400",
             ""
           );
           animation_player(
-            slide_array[Index - 1].querySelector(
-              "input#ans_" + String(correct_answer_position[Index]) + " + label"
-            )
+            slide_array[Index - 1].querySelectorAll("input + label")[
+              correct_answer_position[Index] - 1
+            ]
           );
           multi_checked_input = false;
           break;
