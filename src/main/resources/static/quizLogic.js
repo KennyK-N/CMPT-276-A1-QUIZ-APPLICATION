@@ -177,9 +177,10 @@ function disable_input(currentslide) {
 }
 
 function submit(e) {
+  e.preventDefault();
   var button_disable = document.querySelectorAll("button");
   var slide_array = document.getElementsByClassName("quiz_slides");
-  e.preventDefault();
+  document.querySelector(".table-container").style.display = "flex";
   openModal();
   reached_end = true;
   button_disable[0].remove();
@@ -255,4 +256,5 @@ function error_animation_player(current_button) {
   });
 }
 
+document.querySelector(".table-container").style.display = "none";
 showDivs(Index);
